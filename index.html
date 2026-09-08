@@ -374,6 +374,9 @@
           <label>Business / stall name</label>
           <input type="text" id="vBusiness" required placeholder="e.g. Nails by Kopano">
 
+          <label>What area do you operate in?</label>
+          <input type="text" id="vArea" required placeholder="e.g. your area or suburb">
+
           <label>Category</label>
           <select id="vCategory" required>
             <option value="">Select one</option>
@@ -442,8 +445,8 @@
             <div class="chip" data-value="Photography">Photography</div>
           </div>
 
-          <label>Res / area (optional)</label>
-          <input type="text" id="bArea" placeholder="e.g. Kopano Village">
+          <label>What area do you reside in?</label>
+          <input type="text" id="bArea" required placeholder="e.g. your area or suburb">
 
           <label>Anything specific you're after? (optional)</label>
           <textarea id="bNote" placeholder="e.g. Looking for someone who does braids on weekends"></textarea>
@@ -515,6 +518,7 @@
       formType: 'vendor',
       name: document.getElementById('vName').value,
       business: document.getElementById('vBusiness').value,
+      area: document.getElementById('vArea').value,
       category: document.getElementById('vCategory').value,
       otherCategory: document.getElementById('vOtherCategory').value,
       whatsapp: document.getElementById('vWhatsapp').value,
