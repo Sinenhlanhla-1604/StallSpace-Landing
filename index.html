@@ -125,9 +125,12 @@
 
   /* ---------- hero ---------- */
   .hero{
-    display:grid;grid-template-columns:1.08fr .92fr;gap:56px;
-    align-items:center;padding:56px 0 64px;
+    display:block;
+    padding:56px 0 64px;
+    text-align:center;
   }
+  .hero > div{max-width:640px;margin:0 auto;}
+  .cta-row{justify-content:center;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
     color:var(--purple-ink);background:var(--purple-wash);
@@ -377,9 +380,6 @@
       </div>
       <p class="hero-note">No listing fees. No commission. No app to download.</p>
     </div>
-    <div class="phone">
-      <div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">The StallSpace Discover screen, showing stalls near you &mdash; screenshot coming soon</div>
-    </div>
   </section>
 
   <!-- ================= FACTS ================= -->
@@ -467,48 +467,6 @@
     </div>
   </section>
 
-  <!-- ================= SCREENS ================= -->
-  <section>
-    <div class="sec-head center reveal">
-      <span class="sec-eyebrow">Inside StallSpace</span>
-      <h2>The whole thing, already built.</h2>
-      <p>Storefronts, bookings, orders, a vendor dashboard and earnings &mdash; live today.</p>
-    </div>
-    <div class="screens reveal">
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">Discover stalls near you &mdash; screenshot coming soon</div></div>
-        <div class="label">Discover near you</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">A vendor's stall page &mdash; screenshot coming soon</div></div>
-        <div class="label">A vendor&rsquo;s stall</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">Choosing a booking slot &mdash; screenshot coming soon</div></div>
-        <div class="label">Pick a slot</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">Booking confirmation with reference &mdash; screenshot coming soon</div></div>
-        <div class="label">Sent, with a reference</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">The vendor dashboard &mdash; screenshot coming soon</div></div>
-        <div class="label">Your dashboard</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">Managing services and prices &mdash; screenshot coming soon</div></div>
-        <div class="label">Your listings</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">Editing stall details &mdash; screenshot coming soon</div></div>
-        <div class="label">Your stall details</div>
-      </div>
-      <div class="screen">
-        <div class="frame"><div class="img-placeholder" style="width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#f4f4ef,#ececE5);display:flex;align-items:center;justify-content:center;color:#6f6f68;font-family:'Plus Jakarta Sans',sans-serif;font-size:14px;text-align:center;padding:20px;border-radius:inherit;">Arranging stall photos &mdash; screenshot coming soon</div></div>
-        <div class="label">Your photos</div>
-      </div>
-    </div>
-  </section>
 
   <!-- ================= WHAT YOU GET ================= -->
   <section>
