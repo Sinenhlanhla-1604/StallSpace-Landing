@@ -1,3 +1,65 @@
+
+/
+Claude finished the response
+Ran 12 commands, read 4 files, and 2 more tools
+Done — and as a side benefit, the file dropped from 1.7MB to 28KB, since there's nothing left to embed. Loads instantly now.
+
+Summary of what changed:
+
+Removed the hero phone screenshot, laptop section, and the 6-screen "Inside StallSpace" strip entirely
+Hero is now single-column and centered rather than leaving an empty gap where the image was
+Verified on desktop and mobile — nothing reads as missing, the page flows straight from hero into "What's on StallSpace" and "How it works," which do the proof-of-substance work on their own
+Whenever you're ready to bring images back in, capture screenshots at native phone resolution (not resized down before sending) and I'll drop them back into this same structure.
+
+
+Fixed index
+Code·HTML 
+1789502805684_image.png
+THE ALIGNMENT IS STILL KINDA OFF
+
+Comparing widths between the hero column and facts grid.
+Good catch — let me look at the actual CSS to diagnose precisely rather than guess.
+
+Ran 2 commands
+Confirmed exactly what's happening — the hero text is capped at 640px and centered, but the facts grid below has no width constraint at all, so it spans the full 1120px container. That's the misalignment: different edges for each block. Let me also check something odd in your screenshot — there's a small black triangle in the bottom-left corner that shouldn't be there.
+
+Ran a command
+Nothing in the CSS explains that triangle — it's likely outside the page itself (cursor, browser chrome, or a screenshot artifact), not something I can fix here. If it's still there after a hard refresh, let me know and I'll dig further. Fixing the real alignment issue now:
+
+Edited a file, ran a command, read a file
+Much better now — both blocks share the same centered column, edges visually line up, whole hero reads as one coherent unit instead of two mismatched widths. Let's confirm mobile still holds up too.
+
+Ran a command, read a file, shared files
+What was actually wrong: the hero text was capped at 640px and centered, but the facts grid (R0 / You get paid direct / etc.) below it had no width limit at all — it stretched to the full 1120px container. Two different widths stacked on top of each other is exactly what reads as "off" even when you can't immediately say why. Fixed by widening the hero to 760px and capping the facts grid to 960px, both centered — now they share a consistent visual column. Verified on both desktop and mobile above.
+
+
+Fixed index
+Code·HTML 
+1789503015178_image.png
+it's, it is still um, misaligned because the text no listing fees, no commission, no app to download, and the buttons above it are center aligned. But the, the short paragraph of store pages is where people nearby find what you sell, sell and do. That should be aligned with the buttons as well as the your hustle deserves to be seen heading needs to be aligned with those buttons. The same way live now and free to join is aligned with those buttons. So just that heading of your hustle deserves to be seen and the short description underneath it needs to be aligned in the center.
+
+Measuring pixel centers to confirm the mismatched alignment.
+Good catch, and I can see exactly why now — let me check the actual CSS for the heading and paragraph specifically.
+
+Ran a command
+Found it exactly. The heading has max-width:13ch and the paragraph has max-width:44ch — but neither has margin:auto, so those boxes shrink to their narrower width and then default to sitting at the left edge of the parent (standard block behavior), rather than centering themselves within it. text-align:center only centers the text inside that already-misplaced box — which is exactly the mismatch you spotted. This was leftover from the old two-column layout and never got updated when I converted the hero to single-column.
+
+Edited a file, ran a command, and 2 more tools
+Root cause: the heading and paragraph both had their own max-width (13 characters and 44 characters) but no margin:auto on those specific rules — so each box shrank to its narrower width and then defaulted to sitting at the left edge of the parent, rather than centering itself. text-align:center was only centering the text inside that misplaced box, not the box itself. This was leftover from the old two-column hero and never got updated when it became single-column.
+
+Confirmed with actual pixel measurements, not just eyeballing — the eyebrow, heading, paragraph, button row, and footnote all now sit at exactly the same horizontal center (700px). Should be solid now.
+
+
+Fixed index
+Code·HTML 
+
+Write a message…
+
+
+Claude is AI and can make mistakes. Please double-check responses.
+
+
+Fixed index · HTML
 <!DOCTYPE html>
 <html lang="en-ZA">
 <head>
@@ -22,12 +84,12 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-
+ 
 <!--
   SWAPPING THE SCREENSHOTS
   Every app image on this page is a file in images/. To replace the
   prototype shots with real ones, overwrite the file, keep the name:
-
+ 
     images/hero-discover.jpg   the phone in the hero
     images/discover.jpg        Discover feed
     images/storefront.jpg      a real vendor's stall page
@@ -36,11 +98,11 @@
     images/vendor-dashboard.jpg
     images/edit-stall.jpg
     images/manage-services.jpg
-
+ 
   Portrait phone screenshots, roughly 1170x2532 or any 9:19.5 ratio.
   Nothing else needs editing.
 -->
-
+ 
 <style>
   :root{
     --ink:#16171a;
@@ -77,7 +139,7 @@
   img{max-width:100%;display:block;}
   .wrap{max-width:1120px;margin:0 auto;padding:0 24px;}
   a{color:var(--purple-ink);}
-
+ 
   /* ---------- nav ---------- */
   nav{
     position:sticky;top:0;z-index:50;
@@ -108,7 +170,7 @@
   .nav-links a.nav-cta:hover{background:#000;}
   .nav-links a.nav-login{border:1.5px solid var(--border, #ececE5);font-weight:700;}
   .nav-links a.nav-login:hover{background:rgba(0,0,0,.04);}
-
+ 
   /* ---------- buttons ---------- */
   .btn{
     font-family:inherit;font-size:15px;font-weight:700;
@@ -122,14 +184,14 @@
   .btn-outline:hover{border-color:var(--ink);transform:translateY(-1px);}
   .btn-dark{background:var(--ink);color:#fff;}
   .btn-dark:hover{background:#000;transform:translateY(-1px);}
-
+ 
   /* ---------- hero ---------- */
   .hero{
     display:block;
     padding:56px 0 64px;
     text-align:center;
   }
-  .hero > div{max-width:640px;margin:0 auto;}
+  .hero > div{max-width:760px;margin:0 auto;}
   .cta-row{justify-content:center;}
   .eyebrow{
     display:inline-flex;align-items:center;gap:8px;font-size:12.5px;font-weight:700;
@@ -140,12 +202,12 @@
     width:7px;height:7px;border-radius:50%;background:var(--green);
     box-shadow:0 0 0 3px rgba(19,197,107,.18);
   }
-  .hero h1{font-size:clamp(38px,5.2vw,58px);font-weight:700;max-width:13ch;}
+  .hero h1{font-size:clamp(38px,5.2vw,58px);font-weight:700;max-width:13ch;margin-left:auto;margin-right:auto;}
   .hero h1 em{font-style:normal;color:var(--purple);}
-  .hero .sub{font-size:17.5px;color:var(--gray);margin-top:20px;max-width:44ch;}
+  .hero .sub{font-size:17.5px;color:var(--gray);margin-top:20px;max-width:44ch;margin-left:auto;margin-right:auto;}
   .cta-row{display:flex;gap:12px;margin-top:30px;flex-wrap:wrap;}
   .hero-note{margin-top:18px;font-size:13px;color:var(--gray-light);}
-
+ 
   .phone{
     justify-self:center;width:265px;border-radius:38px;background:#fff;
     border:1px solid var(--border);overflow:hidden;
@@ -153,17 +215,18 @@
     transition:transform .4s ease;
   }
   .phone:hover{transform:translateY(-6px);}
-
+ 
   /* ---------- facts strip ---------- */
   .facts{
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     background:var(--hairline);border:1px solid var(--hairline);
-    border-radius:18px;overflow:hidden;margin-bottom:76px;
+    border-radius:18px;overflow:hidden;margin:0 auto 76px;
+    max-width:960px;
   }
   .fact{background:var(--card);padding:22px 20px;}
   .fact .k{font-family:'Bricolage Grotesque',sans-serif;font-size:19px;font-weight:700;}
   .fact .v{font-size:13px;color:var(--gray);margin-top:5px;}
-
+ 
   /* ---------- section furniture ---------- */
   section{padding:0 0 76px;}
   .sec-head{max-width:620px;margin-bottom:36px;}
@@ -174,7 +237,7 @@
   }
   .sec-head h2{font-size:clamp(26px,3.4vw,34px);font-weight:700;margin-top:10px;}
   .sec-head p{font-size:16px;color:var(--gray);margin-top:14px;}
-
+ 
   /* ---------- categories ---------- */
   .cats{display:flex;flex-wrap:wrap;gap:9px;}
   .cat{
@@ -182,7 +245,7 @@
     padding:10px 18px;font-size:14px;font-weight:600;
   }
   .cat.more{background:transparent;border-style:dashed;color:var(--gray);}
-
+ 
   /* ---------- two-column how it works ---------- */
   .halves{display:grid;grid-template-columns:1fr 1fr;gap:20px;}
   .half{
@@ -214,7 +277,7 @@
     margin-top:24px;padding-top:20px;border-top:1px solid var(--hairline);
     font-size:13.5px;color:var(--gray);
   }
-
+ 
   /* ---------- screens ---------- */
   .screens{
     display:grid;grid-template-columns:repeat(4,1fr);gap:18px;
@@ -228,7 +291,7 @@
   }
   .screen:hover .frame{transform:translateY(-4px);box-shadow:0 24px 42px -22px rgba(20,22,26,.42);}
   .screen .label{margin-top:12px;font-size:13px;font-weight:600;color:var(--gray);}
-
+ 
   /* ---------- feature list ---------- */
   .features{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
   .feature{
@@ -242,7 +305,7 @@
   }
   .feature h4{font-size:16px;font-weight:700;margin-bottom:7px;}
   .feature p{font-size:14px;color:var(--gray);margin:0;}
-
+ 
   /* ---------- pull quote / why ---------- */
   .why{
     background:var(--ink);color:#fff;border-radius:26px;
@@ -252,7 +315,7 @@
   .why p{font-size:16.5px;color:rgba(255,255,255,.72);margin-top:18px;max-width:56ch;}
   .why p b{color:#fff;font-weight:600;}
   .why .hl{color:#c9a0ff;}
-
+ 
   /* ---------- faq ---------- */
   .faq{max-width:760px;margin:0 auto;}
   details{
@@ -274,7 +337,7 @@
   details .body{padding:0 24px 21px;font-size:14.5px;color:var(--gray);}
   details .body p{margin:0 0 10px;}
   details .body p:last-child{margin-bottom:0;}
-
+ 
   /* ---------- final cta ---------- */
   .final{
     text-align:center;background:var(--card);
@@ -283,7 +346,7 @@
   .final h2{font-size:clamp(27px,3.6vw,36px);font-weight:700;max-width:18ch;margin:0 auto;}
   .final p{font-size:16.5px;color:var(--gray);margin:16px auto 0;max-width:46ch;}
   .final .cta-row{justify-content:center;}
-
+ 
   /* ---------- footer ---------- */
   footer{
     border-top:1px solid var(--hairline);margin-top:20px;
@@ -297,7 +360,7 @@
   footer .links a:hover{text-decoration:underline;}
   footer .sep{color:var(--gray-light);}
   footer .copy{margin-top:22px;color:var(--gray-light);font-size:12.5px;}
-
+ 
   /* ---------- reveal ---------- */
   .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
   .reveal.visible{opacity:1;transform:none;}
@@ -306,7 +369,7 @@
     .reveal{opacity:1;transform:none;transition:none;}
     .btn:hover,.phone:hover,.screen:hover .frame{transform:none;}
   }
-
+ 
   /* ---------- responsive ---------- */
   @media (max-width:960px){
     .screens{grid-template-columns:repeat(2,1fr);}
@@ -340,7 +403,7 @@
 <noscript><style>.reveal{opacity:1;transform:none;}</style></noscript>
 </head>
 <body>
-
+ 
 <nav id="nav">
   <div class="nav-inner">
     <div class="brand">
@@ -361,9 +424,9 @@
     </div>
   </div>
 </nav>
-
+ 
 <div class="wrap">
-
+ 
   <!-- ================= HERO ================= -->
   <section class="hero">
     <div>
@@ -381,7 +444,7 @@
       <p class="hero-note">No listing fees. No commission. No app to download.</p>
     </div>
   </section>
-
+ 
   <!-- ================= FACTS ================= -->
   <div class="facts reveal">
     <div class="fact">
@@ -401,7 +464,7 @@
       <div class="v">Name it, price it, add a photo. That&rsquo;s a stall.</div>
     </div>
   </div>
-
+ 
   <!-- ================= CATEGORIES ================= -->
   <section>
     <div class="sec-head reveal">
@@ -424,7 +487,7 @@
       <span class="cat more">+ whatever you do</span>
     </div>
   </section>
-
+ 
   <!-- ================= HOW IT WORKS ================= -->
   <section id="how">
     <div class="sec-head center reveal">
@@ -435,7 +498,7 @@
         The two of you take it from there &mdash; on WhatsApp, like you already would.
       </p>
     </div>
-
+ 
     <div class="halves">
       <div class="half reveal">
         <span class="half-tag tag-buyer">If you&rsquo;re buying</span>
@@ -450,7 +513,7 @@
           Free to browse, and you can look around without an account.
         </p>
       </div>
-
+ 
       <div class="half reveal">
         <span class="half-tag tag-vendor">If you&rsquo;re selling</span>
         <h3>Set up once, get found after.</h3>
@@ -466,8 +529,8 @@
       </div>
     </div>
   </section>
-
-
+ 
+ 
   <!-- ================= WHAT YOU GET ================= -->
   <section>
     <div class="sec-head reveal">
@@ -507,7 +570,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- ================= WHY ================= -->
   <section>
     <div class="why reveal">
@@ -525,7 +588,7 @@
       </p>
     </div>
   </section>
-
+ 
   <!-- ================= TRUST ================= -->
   <section>
     <div class="sec-head reveal">
@@ -550,7 +613,7 @@
       </div>
     </div>
   </section>
-
+ 
   <!-- ================= FAQ ================= -->
   <section id="faq">
     <div class="sec-head center reveal">
@@ -604,7 +667,7 @@
       </details>
     </div>
   </section>
-
+ 
   <!-- ================= FINAL CTA ================= -->
   <section>
     <div class="final reveal">
@@ -616,9 +679,9 @@
       </div>
     </div>
   </section>
-
+ 
 </div>
-
+ 
 <footer>
   <p class="disclaimer">
     StallSpace connects buyers and sellers &mdash; it doesn&rsquo;t process payments,
@@ -638,14 +701,14 @@
   </div>
   <p class="copy">&copy; 2026 Flow4 (Pty) Ltd. StallSpace is a Flow4 product.</p>
 </footer>
-
+ 
 <script>
   // Hairline under the nav once you've scrolled past the top.
   var nav = document.getElementById('nav');
   function onScroll(){ nav.classList.toggle('stuck', window.scrollY > 8); }
   onScroll();
   window.addEventListener('scroll', onScroll, { passive:true });
-
+ 
   // Scroll reveal. Respects prefers-reduced-motion through the CSS above.
   var revealEls = document.querySelectorAll('.reveal');
   if ('IntersectionObserver' in window) {
@@ -668,6 +731,32 @@
     });
   }, 2500);
 </script>
-
+ 
 </body>
 </html>
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
